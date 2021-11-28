@@ -1,0 +1,70 @@
+<view class="page" data-weui-theme="{{theme}}">
+	<view class="weui-form" wx:if="{{result==0}}">
+		<view class="weui-form__control-area">
+      <view class="weui-cell weui-cell_active">{{questions[number-1].id}}.{{questions[number-1].question}}</view>
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells weui-cells_radio">
+                    <radio-group class="radio-group" bindchange="radioChange">
+                        <label class="weui-cell weui-cell_active weui-check__label" wx:for="{{questions[number-1].option}}" wx:key="item">
+                            <view class="weui-cell__bd">
+                                <view>{{item.optionid}}.{{item.content}}</view>
+                            </view>
+                            <view class="weui-cell__ft">
+                                <radio
+                                    class="weui-check"
+                                    value="{{item.optionid}}" 
+                                    checked="{{item.checked}}"                               
+                                />
+                                <i class="weui-icon-checked"></i>
+                            </view>
+                        </label>
+                    </radio-group>
+					<a class="weui-cell weui-cell_active weui-cell_link">
+						<view class="weui-cell__bd"  bindtap="show">查看答案</view>
+            <view class="weui-cells" style="color:red" wx:if="{{show==1}}">{{questions[number-1].answer}}</view>
+					</a>        
+				</view>
+			</view>
+		</view>
+    <view class="weui-form__opr-area">
+        <view class="weui-flex">
+			  <view class="weui-flex__item"><view class="placeholderdesc weui-btn weui-btn_mini weui-btn_primary" bindtap="previous" data-index="{{number-1}}">上一题
+        </view></view>
+		  	<view class="weui-flex__item"><view class="placeholderdesc weui-btn weui-btn_mini weui-btn_primary" bindtap="next" data-index="{{number+1}}">下一题
+        </view></view>
+        <view class="weui-flex__item"><view class="placeholderdesc weui-btn weui-btn_mini weui-btn_default" wx:if="{{number==questions.length}}" bindtap="handin" data-index="{{number+1}}">交卷
+        </view></view>
+		  </view>
+    </view>
+	</view>
+
+  <view class="weui-form" wx:if="{{result==1}}">
+    <view class="weui-cell weui-cell_active" style="color:blue">恭喜您！总共{{questions.length}}题,您答对了{{right}}题，答错了{{wrong}}题！错题如下：</view>
+    <block wx:for="{{faults}}" wx:for-item="item" wx:key="id">
+			<view class="weui-cell weui-cell_active">{{item.id}}.{{item.question}}</view>
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells weui-cells_radio">
+                      <radio-group class="radio-group" bindchange="radioChange">
+                          <label class="weui-cell weui-cell_active weui-check__label" wx:for="{{item.option}}" wx:key="id">
+                              <view class="weui-cell__bd">
+                                  <view>{{item.optionid}}.{{item.content}}</view>
+                              </view>
+                              <view class="weui-cell__ft">
+                                  <radio
+                                      class="weui-check"
+                                      value="{{item.optionid}}" 
+                                      checked="{{item.checked}}"                               
+                                  />
+                                  <i class="weui-icon-checked"></i>
+                              </view>
+                          </label>
+                      </radio-group>
+            <a class="weui-cell weui-cell_active weui-cell_link">
+              <view class="weui-cell__bd" style="color:red">正确答案：{{item.answer}}</view>
+            </a>
+          </view>
+        </view>
+    </block>
+	</view>
+</view>
+

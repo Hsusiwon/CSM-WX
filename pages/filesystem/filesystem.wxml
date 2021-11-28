@@ -1,0 +1,76 @@
+<view class="page" data-weui-theme="{{theme}}">
+    <view class="page__hd">
+        <view class="page__title">文件系统</view>
+        <view class="page__desc">文件系统提供文件的上传、预览和下载功能，并依据您的需求进行分类。</view>
+    </view>
+    <view class="page__bd">
+		<view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
+            <form class="weui-search-bar__form">
+				<view class="weui-search-bar__box">
+					<i class="weui-icon-search"></i>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm='goSearch' />
+                    <span class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput"></span>
+				</view>
+				<label class="weui-search-bar__label" bindtap="showInput">
+					<i class="weui-icon-search"></i>
+                    <span class="weui-search-bar__text">搜索</span>
+				</label>
+            </form>
+            <view class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
+		</view>
+	</view>
+    <view class="page__bd page__bd_spacing">
+        <view class="kind-list">
+            <block wx:for="{{list}}" wx:key="id">
+                <view class="kind-list__item">
+                    <view id="{{item.id}}" class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+                        <view class="weui-flex__item">{{item.name}}</view>
+                        <image class="kind-list__img" src="../images/icon_nav_form.png"></image>
+                    </view>
+                    <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
+                        <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
+                            <block wx:for="{{item.pages}}" wx:for-item="page" wx:key="sec">
+                                <navigator url="{{page.url}}?belong={{page.sec}}" class="weui-cell weui-cell_access">
+                                    <view class="weui-cell__bd"  bindtap="">{{page.des}}</view>
+                                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                                </navigator>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="page__hd">
+        <view class="page__title">文件上传</view>
+        <view class="page__desc">在此处选择文件进行上传。</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        <form>
+                <view class="weui-cell weui-cell_active">
+                    <view class="weui-cell__hd">
+                            <label class="weui-label" style="width: 6em">选择文件</label>
+                    </view>    
+                    <view class="weui-cell__hd">
+                        <button bindtap="chooseFile" style="width: 4em">...</button>
+                    </view>
+                    <view class="weui-cell__hd">
+                            <label  style="width: 6em;color: gray" >{{fileName}}</label>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                    <view class="weui-cell__hd">
+                            <label class="weui-label" style="width: 6em">选择分类</label>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="bindPickerChange" range="{{picker}}">
+                            <view class="weui-select">{{picker[pickerValue]}}</view>
+                        </picker>
+                    </view>
+                </view>
+            <view class="weui-form__opr-area">
+                <button class="weui-btn weui-btn_primary" bindtap="uploadFile" disabled="{{canUse}}">上传</button>
+            </view>
+        </form>
+    </view>
+</view>

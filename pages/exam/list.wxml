@@ -1,0 +1,16 @@
+<!-- 列表组顶部说明文字 -->
+<div class="weui-cells__title">请选择一个试题集进行练习</div>
+<!-- 列表组底部说明文字 -->
+<div class="weui-cells__tips">共{{list.length}}份试题</div>
+<!-- 带图标、说明、跳转的列表项 -->
+<block wx:for="{{list}}" wx:for-item="item" wx:key="id">
+  <div class="weui-cells">
+      <a href="" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd" bindtap="goExam" data-path="{{item.url}}">
+              <p>{{item.desc}}</p>
+          </div>
+          <div class="weui-cell__ft"></div>
+      </a>
+  </div>
+</block>
+

@@ -1,0 +1,66 @@
+<view class="page" data-weui-theme="{{theme}}">
+    <view class="page__hd">
+        <view class="page__title">工作跟踪系统</view>
+        <view class="page__desc">您可以在这里进行工作的新建、查看和关闭。</view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">
+        <form>
+          <view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd"><label class="weui-label">标题</label></view>
+						<view class="weui-cell__bd">
+							<input name="stitle" class="weui-input" placeholder="请输入标题" placeholder-class="weui-input__placeholder" bindconfirm='constitle' />
+					  </view>
+          </view>
+          <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">开始日期</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{stime}}" bindchange="stimeChange">
+                        <view class="weui-input">{{stime}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">截止日期</view>
+                </view>
+                <view class="weui-cell__bd"> 
+                    <picker mode="date" value="{{etime}}" bindchange="etimeChange">
+                        <view class="weui-input">{{etime}}</view>
+                    </picker>
+                </view>
+            </view>
+                <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                    <view class="weui-cell__hd">
+                            <label class="weui-label" style="width: 6em">选择类别</label>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="levelPickerChange" range="{{levelPicker}}">
+                            <view class="weui-select">{{levelPicker[levelPickerValue]}}</view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                    <view class="weui-cell__hd">
+                            <label class="weui-label" style="width: 6em">选择状态</label>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="repairPickerChange" range="{{repairPicker}}">
+                            <view class="weui-select">{{repairPicker[repairPickerValue]}}</view>
+                        </picker>
+                    </view>
+                </view>
+            <view class="weui-form__opr-area">
+                <a class="weui-btn weui-btn_primary" bindtap="query">查看工作详细</a>
+                <view class="weui-cells__tips" style="color:red">注：若不设定条件则查看所有工作项目</view>
+            </view>
+            <view class=" class="page__bd page__bd_spacing>
+                <a class="weui-btn weui-btn_primary" bindtap="add">新建待办工作</a>
+            </view>
+        </form>
+        
+    </view>
+    
+</view>

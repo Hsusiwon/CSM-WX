@@ -1,0 +1,67 @@
+
+<view class="page" data-weui-theme="{{theme}}">
+	<view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+	<view class="weui-cell__hd">
+  	<label class="weui-label" style="width: 6em">选择页数</label>
+   </view>
+	<view class="weui-cell__bd">
+		<picker bindchange="pagePickerChange" range="{{page}}">
+  		<view class="weui-select">{{page[pageValue]}}</view>
+  	</picker>
+  </view>
+	</view>
+  <view class="weui-cells__tips">本页{{dataList.length}}个工作项(总计{{page.length-1}}页,{{total}}个工作项)</view>
+  <block wx:for="{{dataList}}" wx:for-item="item" wx:key="id">
+    <view class="page__bd">
+		<view class="weui-form-preview">
+			<view class="weui-form-preview__hd">
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">标题</label>
+					<em class="weui-form-preview__value">{{item.title}}</em>
+				</view>
+			</view>
+			<view class="weui-form-preview__bd">
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">记录时间</label>
+					<text class="weui-form-preview__value">{{item.recordtime}}</text>
+				</view>
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">记录者</label>
+					<text class="weui-form-preview__value">{{item.recorder}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">组别</label>
+					<text class="weui-form-preview__value">{{item.type}}</text>
+				</view>
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">类型</label>
+					<text class="weui-form-preview__value">{{item.level}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">状态</label>
+					<text class="weui-form-preview__value">{{item.repaired}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">内容描述</label>
+					<text class="weui-form-preview__value">{{txtTemp[item.recordcont]}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">相关图片</label>
+					<view wx:if="{{item.recordpic!=''}}" >
+						<image style="width:80rpx; height:80rpx;" src="../images/ctd.jpg" bindtap="viewPic" data-index="{{item.recordpic}}"></image>
+					</view>
+					<text class="weui-form-preview__value">
+					</text>
+				</view>
+			</view>
+			<view class="weui-form-preview__ft">
+				<a class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="detail" data-index="{{item.serial}}" data-title="{{item.title}}">详细</a>
+			</view>
+      <view class="weui-form-preview__ft" wx:if="{{item.repaired!='已关闭'}}">
+				<a class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="update" data-index="{{item.serial}}" data-title="{{item.title}}">新建</a>
+			</view>
+		</view>
+    </view>
+  </block>
+
+</view>

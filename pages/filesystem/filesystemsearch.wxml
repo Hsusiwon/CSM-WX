@@ -1,0 +1,17 @@
+
+<!-- 列表组顶部说明文字 -->
+<div class="weui-cells__title">{{inputVal}}</div>
+
+<!-- 带图标、说明、跳转的列表项 -->
+<block wx:for="{{dataList}}" wx:for-item="item" wx:key="id">
+  <div class="weui-cells">
+      <a href="" class="weui-cell weui-cell_access">
+          <div class="weui-cell__bd" bindtap="goDownload" data-path="{{item.savePath}}" data-name="{{item.saveName}}">
+              <p>{{item.fileName}}</p>
+          </div>
+          <div class="weui-cell__ft">{{item.writer}}</div>
+      </a>
+  </div>
+</block>
+<!-- 列表组底部说明文字 -->
+<div class="weui-cells__tips">共{{dataList.length}}个文件</div>

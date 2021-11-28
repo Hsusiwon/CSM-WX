@@ -1,0 +1,36 @@
+
+<view class="page" data-weui-theme="{{theme}}">
+  <view class="page__title">{{title}}</view>
+  <view class="weui-cells__tips">共计{{dataList.length}}个更新项</view>
+  <block wx:for="{{dataList}}" wx:for-item="item" wx:key="id">
+    <view class="page__bd">
+		<view class="weui-form-preview">
+			<view class="weui-form-preview__bd">
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">记录时间</label>
+					<text class="weui-form-preview__value">{{item.updatetime}}</text>
+				</view>
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">记录者</label>
+					<text class="weui-form-preview__value">{{item.updater}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">状态</label>
+					<text class="weui-form-preview__value">{{item.repaired}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">内容描述</label>
+					<text class="weui-form-preview__value">{{txtTemp[item.updatecont]}}</text>
+				</view>
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">相关图片</label>
+					<view wx:if="{{item.updatepic!=''}}" >
+						<image style="width:80rpx; height:80rpx;" src="../images/ctd.jpg" bindtap="viewPic" data-index="{{item.updatepic}}"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+    </view>
+  </block>
+
+</view>

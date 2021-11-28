@@ -1,0 +1,87 @@
+<view class="page" data-weui-theme="{{theme}}">
+  <view class="page__hd">
+  <view class="page__title">{{title}}</view>
+  <view class="page__desc">在此进行此项工作的更新。</view>
+  </view>
+
+  <view class="weui-cells__title">状态更新</view>
+  <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">日期</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{date}}" start="2021-09-01" end="2121-09-01" bindchange="bindDateChange">
+                        <view class="weui-input">{{date}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+                        <view class="weui-input">{{time}}</view>
+                    </picker>
+                </view>
+            </view>       
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                    <view class="weui-cell__hd">
+                            <label class="weui-label" style="width: 6em">状态</label>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="repairPickerChange" range="{{repairPicker}}">
+                            <view class="weui-select">{{repairPicker[repairPickerValue]}}</view>
+                        </picker>
+                    </view>
+            </view>
+  </view>
+  <view class="weui-cells__title">现象描述</view>
+  <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder-class="weui-input__placeholder" placeholder="请输入文本" style="height: 3.3em" bindblur="contChange" />
+                </view>
+            </view>
+  </view>
+
+  <form  bindsubmit="formSubmit">
+    <view class="page__bd">
+        <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <view class="weui-uploader__overview">
+                                <view class="weui-uploader__title">请选择图片</view>
+                                <view class="weui-uploader__info">{{files.length}}/9</view>
+                            </view>
+                            </view>
+                            <view class="weui-uploader__bd">
+                                <view wx:if="{{files.length<9}}">
+                                    <view class="weui-uploader__input-box">
+                                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                                    </view>
+                                </view>
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                    <block wx:for="{{files}}" wx:key="*this">
+                                        <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                    </block>   
+                                </view>
+                            </view>
+                        </view>
+                        
+                    </view>
+                </view>
+        </view>    
+    </view>
+    <view class="page__bd">
+        <button class="weui-btn weui-btn_primary" bindtap="edit" disabled="{{canUse}}">更新</button>
+    </view>
+  </form>
+
+</view>
+

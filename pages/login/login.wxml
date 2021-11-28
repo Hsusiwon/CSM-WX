@@ -1,0 +1,41 @@
+<!--pages/login/login.wxml-->
+<view class="page" data-weui-theme="{{theme}}">
+	<view class="page__hd">
+		<view class="imgclass">
+        <image class="kind-list__img" src="../images/cows.jpg" style="width:10em; height:10em;border-radius: 50%;"></image>
+			</view>
+  </view>
+	<form bindsubmit="formSubmit" bindreset="formReset">
+		<view class="weui-form__text-area">
+			<h2 class="weui-form__title">珠江路奶牛班组</h2>
+		</view>
+		<view class="weui-form__control-area">
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells__title">请输入用户名和密码登录</view>
+				<view class="weui-cells weui-cells_form">
+					<view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd"><label class="weui-label">用户名</label></view>
+						<view class="weui-cell__bd">
+							<input name="username" class="weui-input" placeholder="填写本人用户名" placeholder-class="weui-input__placeholder" />
+						</view>
+					</view>
+					<view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd">							
+                            <label class="weui-label">密码</label>
+                        </view>
+						<view class="weui-cell__bd">
+							<input name="password" class="weui-input" placeholder="填写本人密码" placeholder-class="weui-input__placeholder" />
+						</view>
+					</view>
+				</view>
+			</view>
+			
+		</view>
+		<view class="weui-form__control-area">
+			<button form-type="submit" class="weui-btn weui-btn_primary">登录</button>
+      <button form-type="reset" class="weui-btn weui-btn_default">重置</button>
+      
+
+		</view>
+	</form>
+</view>

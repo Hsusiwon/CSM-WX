@@ -1,0 +1,30 @@
+<view class="page" data-weui-theme="{{theme}}">
+    <view class="page__hd">
+        <view class="page__title">你好{{user}}!</view>
+        <view class="page__desc">欢迎使用CSM系统，点击下方图标以使用相应功能！</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+
+      <view class="weui-flex">
+			  <view class="weui-flex__item"><view class="placeholder">
+          <image class="kind-list__img" src="../images/file.jpeg" style="width:5em; height:5em;" bindtap="nav" data-index="{{page[0]}}"></image>
+        </view></view>
+		  	<view class="weui-flex__item"><view class="placeholder">
+          <image class="kind-list__img" src="../images/pro.jpeg"  style="width:5em; height:5em;" bindtap="nav" data-index="{{page[1]}}"></image>
+        </view></view>
+        <view class="weui-flex__item"><view class="placeholder">
+          <image class="kind-list__img" src="../images/exam.jpg" style="width:5em; height:5em;" bindtap="nav" data-index="{{page[2]}}"></image>
+        </view></view>
+		  </view>
+
+      <view class="weui-flex">
+			  <view class="weui-flex__item"><view class="placeholderdesc">文件系统
+        </view></view>
+		  	<view class="weui-flex__item"><view class="placeholderdesc">工作跟踪
+        </view></view>
+        <view class="weui-flex__item"><view class="placeholderdesc">试题测试
+        </view></view>
+		  </view>
+
+    </view>
+</view>
