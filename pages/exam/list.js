@@ -11,6 +11,11 @@ Page({
           desc:'中央系统维护工题库', 
           url:'zyxtwhtk',
       },
+      {
+        id: '2',
+        desc:'施工负责人题库', 
+        url:'sgfzr',
+    },
     ],
   },
 

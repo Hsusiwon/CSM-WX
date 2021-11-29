@@ -1,6 +1,10 @@
 <view class="page" data-weui-theme="{{theme}}">
 	<view class="weui-form" wx:if="{{result==0}}">
-		<view class="weui-form__control-area">
+        <view class="page__hd">
+        <view class="page__title">第{{questions[number-1].id}}题，共计{{questions.length}}题。</view>
+        <view class="page__desc">用时：{{h}}：{{m}}：{{s}}</view>
+        </view>
+		<view class="weui-form__control-area">     
       <view class="weui-cell weui-cell_active">{{questions[number-1].id}}.{{questions[number-1].question}}</view>
 			<view class="weui-cells__group weui-cells__group_form">
 				<view class="weui-cells weui-cells_radio">

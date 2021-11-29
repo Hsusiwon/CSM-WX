@@ -1,4 +1,5 @@
 const zyxtwhtk = require('../../exam/zyxtwhtk.js')
+const sgfzr = require('../../exam/sgfzr.js')
 
 Page({
 
@@ -12,7 +13,44 @@ Page({
     right:0,
     wrong:0,
     faults:[],
-    result:0
+    result:0,
+    setInter:'',
+    h:'00',
+    m:'00',
+    s:'00'
+  },
+  startTime(){
+    const that = this
+    var hou = that.data.h
+    var min = that.data.m
+    var sec = that .data.s
+    that.data.setInter = setInterval(function(){
+      sec++
+      if(sec>=60){
+        sec=0
+        min++
+        if(min>=60){
+          min=0
+          hou++
+          that.setData({
+            h:(hou<10?'0'+hou:hou)
+          })
+        }else{
+          that.setData({
+            m:(min<10?'0'+min:min)
+          })
+        }
+      }else{
+        that.setData({
+          s:(sec<10?'0'+sec:sec)
+        })
+      }
+    },1000)
+  },
+  endTime(){
+    var that = this;
+      //清除计时器  即清除setInter
+      clearInterval(that.data.setInter)
   },
   radioChange: function (e) {
     var data=this.data.questions
@@ -52,6 +90,7 @@ Page({
         }
       }
     }
+    this.endTime
     this.setData({
       result:1,
       faults:this.data.faults//要想页面刷新数据，需在setData里面重写一遍
@@ -67,6 +106,12 @@ Page({
       questions:zyxtwhtk.zyxtwhtk
     })
     }
+    if(options.url=='sgfzr'){
+      this.setData({
+        questions:sgfzr.sgfzr
+      })
+      }
+    this.startTime()
   },
   show:function(e){
     this.setData({
